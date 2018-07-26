@@ -9,7 +9,6 @@ var images = [
     { caption: "Caption7", index: 6, src: "aventuras/patrick-bald-730896-unsplash.jpg" },
     { caption: "Caption8", index: 7, src: "aventuras/simon-matzinger-320332-unsplash.jpg" },
     { caption: "Caption9", index: 8, src: "aventuras/saffu-221040-unsplash.jpg" }
-    
 ];
 
 var container = document.querySelector('.image-thumbnail-container');
@@ -23,42 +22,31 @@ var forwardArrow = document.querySelector('.right-arrow');
 
 var currentImageIndex;
 
-for (var i = 0; i < images.length; i++) {
-    (function() {
-        // Copies 'i' every time it creates a new desk space
-        var currentI = i;
+var addNewImage = function(image, i) {
 
-        var image = images[i];
-        var newImage = document.createElement('img');
-        newImage.setAttribute('src', image.src);
-        newImage.classList.add('image');
+    var newImage = document.createElement('img');
+    newImage.setAttribute('src', image.src);
+    newImage.classList.add('image');
 
-        // caption = document.createElement('p');
-        // caption.textContent = image.caption;
-        // caption.classList.add('image-caption');
+    var imageThumbnail = document.createElement('li');
+    imageThumbnail.classList.add('image-thumbnail');
 
-        var imageThumbnail = document.createElement('li');
-        imageThumbnail.classList.add('image-thumbnail');
-        // imageThumbnail.setAttribute('data-index', image.index);
-        // imageThumbnail.setAttribute('data-index', i);
+    imageThumbnail.appendChild(newImage);  
+    
+    var openLightBox = function (event) {
+        currentImageIndex = i;
+        changeImage(currentImageIndex);
+        changeCaption(currentImageIndex);
+        // lightBox.classList.remove('hide-lightbox');
+        lightBoxContainer.classList.remove('hide-lightbox');
+    };
 
-        imageThumbnail.appendChild(newImage);
-        // imageThumbnail.appendChild(caption);    
-        
-        var openLightBox = function (event) {
-            currentImageIndex = currentI;
-            changeImage(currentImageIndex);
-            // console.log(currentI);
-            changeCaption(currentImageIndex);
-            // lightBox.classList.remove('hide-lightbox');
-            lightBoxContainer.classList.remove('hide-lightbox');
-        };
+    imageThumbnail.addEventListener('click', openLightBox);
 
-        imageThumbnail.addEventListener('click', openLightBox);
+    container.appendChild(imageThumbnail);
+};
 
-        container.appendChild(imageThumbnail);
-    })();
-}
+images.forEach(addNewImage);
 
 var changeImage = function (currentImageIndex) {
     lightBoxImage.setAttribute('src', images[currentImageIndex].src);
@@ -67,7 +55,6 @@ var changeImage = function (currentImageIndex) {
 var changeCaption = function (currentImageIndex) {
     lightBoxCaption.textContent = images[currentImageIndex].caption;
 };
-
 
 var closeLightBox = function () {
     lightBoxContainer.classList.add('hide-lightbox');
