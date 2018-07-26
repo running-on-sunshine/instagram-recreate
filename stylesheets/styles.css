@@ -113,11 +113,9 @@ html, body {
     background-color: rgba(0,0,0,0.20);
     padding-left: 0.3em;
     padding-right: 0.3em;
-    padding-top: 0.1em;
-    padding-bottom: 0.1em;
     border-radius: 0.3em;
     color: rgba(256,256,256,0.5);
-    margin-left: 0.5em;
+    /* margin-left: 0.5em; */
     margin-right: 0.5em;
 
     /* arrows on the outside */

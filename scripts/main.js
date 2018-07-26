@@ -1,18 +1,16 @@
-// Food-themed-images
-// var images = [
-//     { caption: "Dragonfruit & citrus!", class: "image1", src: "images/brooke-lark-209712-unsplash.jpg" },
-//     { caption: "Oooh! Something tasty!", class: "image2", src: "images/brooke-lark-194252-unsplash.jpg" },
-//     { caption: "A colorful array of citrus fruits!", class: "image3", src: "images/edgar-castrejon-459807-unsplash.jpg" },
-//     { caption: "A fresh lunch bowl ready to be devoured.", class: "image4", src: "images/brooke-lark-229136-unsplash.jpg" },
-//     { caption: "Caption", class: "image5", src: "images/brooke-lark-209708-unsplash.jpg" },
-//     { caption: "Caption", class: "image6", src: "images/edgar-castrejon-460843-unsplash.jpg" },
-//     { caption: "Caption", class: "image7", src: "images/jonathan-pielmayer-176664-unsplash.jpg" },
-//     { caption: "Caption", class: "image8", src: "images/cayla1-150730-unsplash.jpg" },
-//     { caption: "Caption", class: "image9", src: "images/edgar-castrejon-459822-unsplash.jpg" }
-// ];
+var images;
+var container;
+var lightBox;
+var lightBoxImage;
+var exitButton;
+var i;
+var openLightBox;
+var backArrow;
+var forwardArrow;
+
 
 // Landscape-themed-images
-var images = [
+images = [
     { caption: "Caption", index: 0, src: "aventuras/billy-williams-262740-unsplash.jpg" },
     { caption: "Caption", index: 1, src: "aventuras/brianda-maldonado-741341-unsplash.jpg" },
     { caption: "Caption", index: 2, src: "aventuras/idan-arad-109776-unsplash.jpg" },
@@ -25,91 +23,81 @@ var images = [
     
 ];
 
-var container = document.querySelector('.image-thumbnail-container');
+container = document.querySelector('.image-thumbnail-container');
+lightBox = document.querySelector('.lightbox');
+lightBoxImage = document.querySelector('.lightbox-image');
+exitButton = document.querySelector('.exit-button');
+backArrow = document.querySelector('.left-arrow');
+forwardArrow = document.querySelector('.right-arrow');
 
-for (var image of images) {
-    var newImage = document.createElement('img');
-    newImage.setAttribute('src', image.src);
-    newImage.classList.add('image');
+var currentImageIndex;
 
-    // var caption = document.createElement('p');
-    // caption.textContent = image.caption;
-    // caption.classList.add('image-caption')
+for (i = 0; i < images.length; i++) {
+    (function() {
+        var image;
+        var newImage;
+        // var caption;
+        var imageThumbnail;
 
-    var imageThumbnail = document.createElement('li');
-    imageThumbnail.classList.add('image-thumbnail');
-    imageThumbnail.setAttribute('data-index', image.index);
+        // Copies 'i' every time it creates a new desk space
+        var currentI = i;
 
-    imageThumbnail.appendChild(newImage);
-    // listItem.appendChild(caption);
+        image = images[i];
+        newImage = document.createElement('img');
+        newImage.setAttribute('src', image.src);
+        newImage.classList.add('image');
 
-    container.appendChild(imageThumbnail);
+        // caption = document.createElement('p');
+        // caption.textContent = image.caption;
+        // caption.classList.add('image-caption')
+
+        imageThumbnail = document.createElement('li');
+        imageThumbnail.classList.add('image-thumbnail');
+        // imageThumbnail.setAttribute('data-index', image.index);
+        imageThumbnail.setAttribute('data-index', i);
+
+        imageThumbnail.appendChild(newImage);
+        // imageThumbnail.appendChild(caption);    
+        
+        openLightBox = function (event) {
+            currentImageIndex = currentI;
+            changeImage(currentImageIndex);
+            lightBox.classList.remove('hide-lightbox');
+        };
+
+        imageThumbnail.addEventListener('click', openLightBox);
+
+        container.appendChild(imageThumbnail);
+    })();
 }
 
-// ==================================================================== //
-//                              Lightbox                                //
-// ==================================================================== //
-
-var currentIndex;
-
-// Selects the Thumbnail
-var imageThumbnails = document.querySelectorAll('.image-thumbnail');
-
-// Selects the Lightbox
-var lightBox = document.querySelector('.lightbox');
-
-// Selects the Lightbox Image
-var lightboxImage = document.querySelector('.lightbox-image');
-
-// Selects the Arrow Buttons
-var backArrow = document.querySelector('.left-arrow');
-var forwardArrow = document.querySelector('.right-arrow');
-
-// Selects the Exit Button
-var exitButton = document.querySelector('.exit-button');
-
-var changeImage = function () {
-    var imageSource = images[currentIndex].src;
-    lightboxImage.setAttribute('src', imageSource);
+var changeImage = function (currentImageIndex) {
+    lightBoxImage.setAttribute('src', images[currentImageIndex].src);
+    // image.caption;
 };
 
-// -------------------------- Opens Lightbox --------------------------- //
-var openLightBox = function () {
-    currentIndex = event.currentTarget.getAttribute('data-index');
-    changeImage();
-    lightBox.classList.remove('hide-lightbox');
-};
-
-// Adds 'Click' Event Listener to every image container ('listItems') --- //
-for (var image of imageThumbnails) {
-    image.addEventListener('click', openLightBox);
-}
-
-// -------------------------- Closes Lightbox ---------------------------- //
 var closeLightBox = function () {
     lightBox.classList.add('hide-lightbox');
 };
 
-// Exit Button Listener
-exitButton.addEventListener('click', closeLightBox);
-
-// -------------------------- Goes Back An Image -------------------------- // 
 var goBackImage = function () {
-    currentIndex -= 1;
-    if (currentIndex < 0) {
-        currentIndex = images.length-1;
+    currentImageIndex -= 1;
+    if (currentImageIndex < 0) {
+        currentImageIndex = images.length-1;
     }
-    changeImage();
+    changeImage(currentImageIndex);
 };
 
-// ------------------------- Goes Forward An Image -------------------------- // 
 var goForwardImage = function () {
-    currentIndex += 1;
-    if (currentIndex > images.length) {
-        currentIndex = 0;
+    currentImageIndex += 1;
+    if (currentImageIndex > images.length) {
+        currentImageIndex = 0;
     }
-    changeImage();
+    changeImage(currentImageIndex);
 };
+
+// Exit Button Listner
+exitButton.addEventListener('click', closeLightBox);
 
 // Arrow Button Listeners
 backArrow.addEventListener('click', goBackImage);
