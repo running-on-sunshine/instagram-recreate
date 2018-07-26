@@ -1,0 +1,136 @@
+html, body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    font-size: 10px;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+}
+
+.nav-bar {
+    position: sticky;
+}
+
+.gallery-title {
+    font-family: 'Suez One', serif;
+    text-align: left;
+    font-size: 2.5em;
+    /* margin-top: 2em; */
+    /* margin-bottom: 1.5em; */
+    margin-left: 6em;
+
+    /* bigger font change */
+    /* font-size: 3.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 4.3em; */
+}
+
+.image-thumbnail-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow-x: auto;
+    /* below makes everything wrap to the next line! */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.image-thumbnail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-right: 3em;
+    margin-bottom: 3em;
+    height: 30em;
+    width: 30em;
+}
+
+.image {
+    /* width: 30em;
+    height: 30em; */
+    width: 100%;
+    height: 100%;
+    border-radius: 1em;
+}
+
+.image:hover {
+    box-shadow: 4px 4px 4px rgb(197, 196, 196);
+}
+
+/* .image-caption {
+    display: flex;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.6em;
+} */
+
+.lightbox-container {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.60);
+}
+
+.lightbox {
+    text-align: right;
+    position: fixed;
+    /* left: 10em; */
+}
+
+.lightbox-image-container {
+    background-color: rgb(0,0,0);
+    border: 0.5em solid white;
+    height: 60em;
+    width: 60em;
+}
+
+.lightbox-image {
+    height: 100%;
+    width: 100%;
+}
+
+/* .lightbox-caption {
+    height: 100%;
+    width: 100;
+} */
+
+.arrow-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+}
+
+.arrows {
+    font-size: 2.5em;
+    background-color: rgba(0,0,0,0.20);
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    border-radius: 0.3em;
+    color: rgba(256,256,256,0.5);
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+
+    /* arrows on the outside */
+    /* font-size: 4.5em;
+    margin-left: -0.7em;
+    margin-right: -0.7em; */
+}
+
+.exit-button {
+    font-size: 2.5em;
+    color: rgb(0,0,0);
+}
+
+.hide-lightbox {
+    display: none;
+}
