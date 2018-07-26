@@ -79,14 +79,15 @@ html, body {
 .lightbox {
     text-align: right;
     position: fixed;
-    /* left: 10em; */
+    left: 25em;
 }
 
-.lightbox-image-container {
+.lightbox-content-container {
     background-color: rgb(0,0,0);
     border: 0.5em solid white;
-    height: 60em;
-    width: 60em;
+    height: 55em;
+    width: 70em;
+    position: relative;
 }
 
 .lightbox-image {
@@ -94,39 +95,42 @@ html, body {
     width: 100%;
 }
 
-/* .lightbox-caption {
+.lightbox-caption {
     height: 100%;
     width: 100;
-} */
+}
 
 .arrow-buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-family: 'PT Sans Narrow', sans-serif;
     width: 100%;
     position: absolute;
     top: 50%;
 }
 
 .arrows {
-    font-size: 2.5em;
-    background-color: rgba(0,0,0,0.20);
+    /* font-size: 2.5em; */
+    /* background-color: rgba(0,0,0,0.20);
     padding-left: 0.3em;
-    padding-right: 0.3em;
-    border-radius: 0.3em;
+    padding-right: 0.3em; */
+    /* padding-top: 0.1em;
+    padding-bottom: 0.1em; */
+    /* border-radius: 0.3em; */
     color: rgba(256,256,256,0.5);
-    /* margin-left: 0.5em; */
-    margin-right: 0.5em;
+    /* margin-left: 0.5em;
+    margin-right: 0.5em; */
 
     /* arrows on the outside */
-    /* font-size: 4.5em;
+    font-size: 4.5em;
     margin-left: -0.7em;
-    margin-right: -0.7em; */
+    margin-right: -0.7em;
 }
 
 .exit-button {
     font-size: 2.5em;
-    color: rgb(0,0,0);
+    color: rgba(256,256,256,0.5);
 }
 
 .hide-lightbox {

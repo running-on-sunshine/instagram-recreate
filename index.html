@@ -6,15 +6,20 @@
     <title>Photo Gallery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/styles.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Lato|Suez+One" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Suez+One|PT+Sans+Narrow" rel="stylesheet"/>
 </head>
 <body>
-    <h1 class="gallery-title">Photo Gallery</h1>
+    <div class="nav-bar">
+        <h1 class="gallery-title">Photo Gallery</h1>
+    </div>
     <ul class="image-thumbnail-container"></ul>
-    <div class="lightbox hide-lightbox">
-        <div class="exit-button">x</div>
-        <div class="lightbox-image-container">
-            <img src="images/brooke-lark-209712-unsplash.jpg" class="lightbox-image"/>
+    <div class="lightbox-container hide-lightbox">
+        <div class="lightbox hide-lightbox">
+            <div class="exit-button">x</div>
+            <div class="lightbox-content-container">
+                <img src="images/brooke-lark-209712-unsplash.jpg" class="lightbox-image"/>
+                <p class="lightbox-caption"></p>
+            </div>
             <div class="arrow-buttons">
                 <div class="left-arrow arrows"><</div>
                 <div class="right-arrow arrows">></div>
