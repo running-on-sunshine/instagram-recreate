@@ -85,6 +85,20 @@ var goForwardImage = function () {
 // Exit Button Listeners
 exitButton.addEventListener('click', closeLightBox);
 
-// Arrow Button Listeners
+// Arrow Button Listeners -- Pressing Buttons on Keyboard
+document.addEventListener('keydown', (event) => {
+    var keyName = event.key;
+    if (keyName === "ArrowRight") {
+        goForwardImage();
+    }
+    else if (keyName === "ArrowLeft") {
+        goBackImage();
+    }
+    else if (keyName === "Escape") {
+        closeLightBox();
+    }
+});
+
+// Arrow Button Listeners -- Clicking Buttons on Screen
 backArrow.addEventListener('click', goBackImage);
 forwardArrow.addEventListener('click', goForwardImage);
