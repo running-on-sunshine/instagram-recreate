@@ -11,53 +11,53 @@ var images = [
     { caption: "Caption9", index: 8, src: "aventuras/saffu-221040-unsplash.jpg" }
 ];
 
-var container = document.querySelector('.image-thumbnail-container');
-var lightBoxContainer = document.querySelector('.lightbox-container');
-var lightBox = document.querySelector('.lightbox');
-var lightBoxImage = document.querySelector('.lightbox-image');
-var lightBoxCaption = document.querySelector('.lightbox-caption');
-var exitButton = document.querySelector('.exit-button');
-var backArrow = document.querySelector('.left-arrow');
-var forwardArrow = document.querySelector('.right-arrow');
+var container = $('.image-thumbnail-container');
+var lightBoxContainer = $('.lightbox-container');
+var lightBox = $('.lightbox');
+var lightBoxImage = $('.lightbox-image');
+var lightBoxCaption = $('.lightbox-caption');
+var exitButton = $('.exit-button');
+var backArrow = $('.left-arrow');
+var forwardArrow = $('.right-arrow');
 
 var currentImageIndex;
 
 var addNewImage = function(image, i) {
 
-    var newImage = document.createElement('img');
-    newImage.setAttribute('src', image.src);
-    newImage.classList.add('image');
+    var newImage = $('<img>');
+    newImage.attr('src', image.src);
+    newImage.addClass('image');
 
-    var imageThumbnail = document.createElement('li');
-    imageThumbnail.classList.add('image-thumbnail');
+    var imageThumbnail = $('<li>');
+    imageThumbnail.addClass('image-thumbnail');
 
-    imageThumbnail.appendChild(newImage);  
+    imageThumbnail.append(newImage);  
     
     var openLightBox = function (event) {
         currentImageIndex = i;
         changeImage(currentImageIndex);
         changeCaption(currentImageIndex);
         // lightBox.classList.remove('hide-lightbox');
-        lightBoxContainer.classList.remove('hide-lightbox');
+        lightBoxContainer.removeClass('hide-lightbox');
     };
 
-    imageThumbnail.addEventListener('click', openLightBox);
+    imageThumbnail.on('click', openLightBox);
 
-    container.appendChild(imageThumbnail);
+    container.append(imageThumbnail);
 };
 
 images.forEach(addNewImage);
 
 var changeImage = function (currentImageIndex) {
-    lightBoxImage.setAttribute('src', images[currentImageIndex].src);
+    lightBoxImage.attr('src', images[currentImageIndex].src);
 };
 
 var changeCaption = function (currentImageIndex) {
-    lightBoxCaption.textContent = images[currentImageIndex].caption;
+    lightBoxCaption.text(images[currentImageIndex].caption);
 };
 
 var closeLightBox = function () {
-    lightBoxContainer.classList.add('hide-lightbox');
+    lightBoxContainer.addClass('hide-lightbox');
     // lightBox.classList.add('hide-lightbox');
 };
 
@@ -82,19 +82,18 @@ var goForwardImage = function () {
     updateLightBox(currentImageIndex);
 };
 
-var closeLightBoxContainer = function (event) {
-    if (event.target === lightBoxContainer) {
+$(window).on('click', function (event) {
+    if ($(event.target).is(lightBoxContainer) ) {
         closeLightBox();
     }
-};
-
-window.addEventListener('click', closeLightBoxContainer);
+});
 
 // Exit Button Listeners
-exitButton.addEventListener('click', closeLightBox);
+exitButton.on('click', closeLightBox);
 
 // Arrow + Escape Button Listeners -- Pressing Buttons on Keyboard
-document.addEventListener('keydown', (event) => {
+
+$(document).on('keydown', (event) => {
     var keyName = event.key;
     if (keyName === "ArrowRight") {
         goForwardImage();
@@ -108,5 +107,5 @@ document.addEventListener('keydown', (event) => {
 });
 
 // Arrow Button Listeners -- Clicking Buttons on Screen
-backArrow.addEventListener('click', goBackImage);
-forwardArrow.addEventListener('click', goForwardImage);
+backArrow.on('click', goBackImage);
+forwardArrow.on('click', goForwardImage);
