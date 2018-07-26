@@ -36,6 +36,7 @@ html, body {
     /* below makes everything wrap to the next line! */
     justify-content: center;
     flex-wrap: wrap;
+    padding-top: .4em;
 }
 
 .image-thumbnail {
@@ -54,11 +55,12 @@ html, body {
     height: 30em; */
     width: 100%;
     height: 100%;
-    border-radius: 1em;
+    /* border-radius: 1em; */
 }
 
 .image:hover {
-    box-shadow: 4px 4px 4px rgb(197, 196, 196);
+    /* box-shadow: 4px 4px 4px rgb(197, 196, 196); */
+    border: 4px solid rgb(184, 184, 184);
 }
 
 /* .image-caption {
