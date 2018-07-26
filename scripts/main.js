@@ -82,10 +82,18 @@ var goForwardImage = function () {
     updateLightBox(currentImageIndex);
 };
 
+var closeLightBoxContainer = function (event) {
+    if (event.target === lightBoxContainer) {
+        closeLightBox();
+    }
+};
+
+window.addEventListener('click', closeLightBoxContainer);
+
 // Exit Button Listeners
 exitButton.addEventListener('click', closeLightBox);
 
-// Arrow Button Listeners -- Pressing Buttons on Keyboard
+// Arrow + Escape Button Listeners -- Pressing Buttons on Keyboard
 document.addEventListener('keydown', (event) => {
     var keyName = event.key;
     if (keyName === "ArrowRight") {
