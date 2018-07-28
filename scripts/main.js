@@ -82,17 +82,24 @@ var goForwardImage = function () {
     updateLightBox(currentImageIndex);
 };
 
+// Click Event Listener on the Lightbox Container
 $(window).on('click', function (event) {
-    if ($(event.target).is(lightBoxContainer) ) {
+    if (event.target === lightBoxContainer[0]) {
         closeLightBox();
     }
 });
 
-// Exit Button Listeners
+// Click Event Listener on the Lightbox Container (Alternative Version)
+// $(window).on('click', function (event) {
+//     if ($(event.target).is(lightBoxContainer)) {
+//         closeLightBox();
+//     }
+// });
+
+// Click Event Listener on the 'x' Exit Button 
 exitButton.on('click', closeLightBox);
 
-// Arrow + Escape Button Listeners -- Pressing Buttons on Keyboard
-
+// Arrow + Escape Keydown Event Listeners -- Pressing Actual Buttons on the Keyboard
 $(document).on('keydown', (event) => {
     var keyName = event.key;
     if (keyName === "ArrowRight") {
@@ -106,6 +113,6 @@ $(document).on('keydown', (event) => {
     }
 });
 
-// Arrow Button Listeners -- Clicking Buttons on Screen
+// Arrow Button Click Listeners -- Clicking Actual Buttons on the Screen
 backArrow.on('click', goBackImage);
 forwardArrow.on('click', goForwardImage);
