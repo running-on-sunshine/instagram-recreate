@@ -1,5 +1,5 @@
 // Landscape-themed-images
-var images = [
+let images = [
     { caption: "Caption1", index: 0, src: "aventuras/billy-williams-262740-unsplash.jpg" },
     { caption: "Caption2", index: 1, src: "aventuras/brianda-maldonado-741341-unsplash.jpg" },
     { caption: "Caption3", index: 2, src: "aventuras/idan-arad-109776-unsplash.jpg" },
@@ -11,29 +11,29 @@ var images = [
     { caption: "Caption9", index: 8, src: "aventuras/saffu-221040-unsplash.jpg" }
 ];
 
-var container = $('.image-thumbnail-container');
-var lightBoxContainer = $('.lightbox-container');
-var lightBox = $('.lightbox');
-var lightBoxImage = $('.lightbox-image');
-var lightBoxCaption = $('.lightbox-caption');
-var exitButton = $('.exit-button');
-var backArrow = $('.left-arrow');
-var forwardArrow = $('.right-arrow');
+const container = $('.image-thumbnail-container');
+const lightBoxContainer = $('.lightbox-container');
+const lightBox = $('.lightbox');
+const lightBoxImage = $('.lightbox-image');
+const lightBoxCaption = $('.lightbox-caption');
+const exitButton = $('.exit-button');
+const backArrow = $('.left-arrow');
+const forwardArrow = $('.right-arrow');
 
-var currentImageIndex;
+let currentImageIndex;
 
-var addNewImage = function(image, i) {
+let addNewImage = (image, i) => {
 
-    var newImage = $('<img>');
+    let newImage = $('<img>');
     newImage.attr('src', image.src);
     newImage.addClass('image');
 
-    var imageThumbnail = $('<li>');
+    let imageThumbnail = $('<li>');
     imageThumbnail.addClass('image-thumbnail');
 
     imageThumbnail.append(newImage);  
     
-    var openLightBox = function (event) {
+    let openLightBox = (event) => {
         currentImageIndex = i;
         changeImage(currentImageIndex);
         changeCaption(currentImageIndex);
@@ -48,25 +48,25 @@ var addNewImage = function(image, i) {
 
 images.forEach(addNewImage);
 
-var changeImage = function (currentImageIndex) {
+let changeImage = (currentImageIndex) => {
     lightBoxImage.attr('src', images[currentImageIndex].src);
 };
 
-var changeCaption = function (currentImageIndex) {
+let changeCaption = (currentImageIndex) => {
     lightBoxCaption.text(images[currentImageIndex].caption);
 };
 
-var closeLightBox = function () {
+let closeLightBox = () => {
     lightBoxContainer.addClass('hide-lightbox');
     // lightBox.classList.add('hide-lightbox');
 };
 
-var updateLightBox = function () {
+let updateLightBox = () => {
     changeImage(currentImageIndex);
     changeCaption(currentImageIndex);
 };
 
-var goBackImage = function () {
+let goBackImage = () => {
     currentImageIndex -= 1;
     if (currentImageIndex < 0) {
         currentImageIndex = images.length-1;
@@ -74,7 +74,7 @@ var goBackImage = function () {
     updateLightBox(currentImageIndex);
 };
 
-var goForwardImage = function () {
+let goForwardImage = () => {
     currentImageIndex += 1;
     if (currentImageIndex > images.length) {
         currentImageIndex = 0;
@@ -83,7 +83,7 @@ var goForwardImage = function () {
 };
 
 // Click Event Listener on the Lightbox Container
-$(window).on('click', function (event) {
+$(window).on('click', (event) => {
     if (event.target === lightBoxContainer[0]) {
         closeLightBox();
     }
@@ -101,7 +101,7 @@ exitButton.on('click', closeLightBox);
 
 // Arrow + Escape Keydown Event Listeners -- Pressing Actual Buttons on the Keyboard
 $(document).on('keydown', (event) => {
-    var keyName = event.key;
+    let keyName = event.key;
     if (keyName === "ArrowRight") {
         goForwardImage();
     }
