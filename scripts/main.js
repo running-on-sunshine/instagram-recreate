@@ -1,5 +1,5 @@
 // Landscape-themed-images
-var images = [
+let images = [
     { caption: "Caption1", index: 0, src: "aventuras/billy-williams-262740-unsplash.jpg" },
     { caption: "Caption2", index: 1, src: "aventuras/brianda-maldonado-741341-unsplash.jpg" },
     { caption: "Caption3", index: 2, src: "aventuras/idan-arad-109776-unsplash.jpg" },
@@ -11,29 +11,29 @@ var images = [
     { caption: "Caption9", index: 8, src: "aventuras/saffu-221040-unsplash.jpg" }
 ];
 
-var container = document.querySelector('.image-thumbnail-container');
-var lightBoxContainer = document.querySelector('.lightbox-container');
-var lightBox = document.querySelector('.lightbox');
-var lightBoxImage = document.querySelector('.lightbox-image');
-var lightBoxCaption = document.querySelector('.lightbox-caption');
-var exitButton = document.querySelector('.exit-button');
-var backArrow = document.querySelector('.left-arrow');
+let container = document.querySelector('.image-thumbnail-container');
+let lightBoxContainer = document.querySelector('.lightbox-container');
+let lightBox = document.querySelector('.lightbox');
+let lightBoxImage = document.querySelector('.lightbox-image');
+let lightBoxCaption = document.querySelector('.lightbox-caption');
+let exitButton = document.querySelector('.exit-button');
+let backArrow = document.querySelector('.left-arrow');
 var forwardArrow = document.querySelector('.right-arrow');
 
-var currentImageIndex;
+let currentImageIndex;
 
-var addNewImage = function(image, i) {
+let addNewImage = (image, i) => {
 
-    var newImage = document.createElement('img');
+    let newImage = document.createElement('img');
     newImage.setAttribute('src', image.src);
     newImage.classList.add('image');
 
-    var imageThumbnail = document.createElement('li');
+    let imageThumbnail = document.createElement('li');
     imageThumbnail.classList.add('image-thumbnail');
 
     imageThumbnail.appendChild(newImage);  
     
-    var openLightBox = function (event) {
+    let openLightBox = (event) => {
         currentImageIndex = i;
         changeImage(currentImageIndex);
         changeCaption(currentImageIndex);
@@ -48,25 +48,25 @@ var addNewImage = function(image, i) {
 
 images.forEach(addNewImage);
 
-var changeImage = function (currentImageIndex) {
+let changeImage = (currentImageIndex) => {
     lightBoxImage.setAttribute('src', images[currentImageIndex].src);
 };
 
-var changeCaption = function (currentImageIndex) {
+let changeCaption = (currentImageIndex) => {
     lightBoxCaption.textContent = images[currentImageIndex].caption;
 };
 
-var closeLightBox = function () {
+let closeLightBox = () => {
     lightBoxContainer.classList.add('hide-lightbox');
     // lightBox.classList.add('hide-lightbox');
 };
 
-var updateLightBox = function () {
+let updateLightBox = () => {
     changeImage(currentImageIndex);
     changeCaption(currentImageIndex);
 };
 
-var goBackImage = function () {
+let goBackImage = () => {
     currentImageIndex -= 1;
     if (currentImageIndex < 0) {
         currentImageIndex = images.length-1;
@@ -74,7 +74,7 @@ var goBackImage = function () {
     updateLightBox(currentImageIndex);
 };
 
-var goForwardImage = function () {
+let goForwardImage = () => {
     currentImageIndex += 1;
     if (currentImageIndex > images.length) {
         currentImageIndex = 0;
@@ -82,7 +82,7 @@ var goForwardImage = function () {
     updateLightBox(currentImageIndex);
 };
 
-var closeLightBoxContainer = function (event) {
+let closeLightBoxContainer = (event) => {
     if (event.target === lightBoxContainer) {
         closeLightBox();
     }
@@ -95,7 +95,7 @@ exitButton.addEventListener('click', closeLightBox);
 
 // Arrow + Escape Button Listeners -- Pressing Buttons on Keyboard
 document.addEventListener('keydown', (event) => {
-    var keyName = event.key;
+    let keyName = event.key;
     if (keyName === "ArrowRight") {
         goForwardImage();
     }
