@@ -1,17 +1,16 @@
-// Landscape-themed-images
 let images = [
-    { caption: "Caption1", index: 0, src: "aventuras/billy-williams-262740-unsplash.jpg" },
-    { caption: "Caption2", index: 1, src: "aventuras/brianda-maldonado-741341-unsplash.jpg" },
-    { caption: "Caption3", index: 2, src: "aventuras/idan-arad-109776-unsplash.jpg" },
-    { caption: "Caption4", index: 3, src: "aventuras/romello-williams-384006-unsplash.jpg" },
-    { caption: "Caption5", index: 4, src: "aventuras/kea-mowat-601648-unsplash.jpg" },
-    { caption: "Caption6", index: 5, src: "aventuras/kea-mowat-658785-unsplash.jpg" },
-    { caption: "Caption7", index: 6, src: "aventuras/patrick-bald-730896-unsplash.jpg" },
-    { caption: "Caption8", index: 7, src: "aventuras/simon-matzinger-320332-unsplash.jpg" },
-    { caption: "Caption9", index: 8, src: "aventuras/saffu-221040-unsplash.jpg" }
+    { title: "Image1", caption: "Caption1", index: 0, src: "images/ian-schneider-108618-unsplash.jpg" },
+    { title: "Image2", caption: "Caption2", index: 1, src: "images/kristopher-roller-110204-unsplash.jpg" },
+    { title: "Image3", caption: "Caption3", index: 2, src: "images/amy-humphries-227515-unsplash.jpg" },
+    { title: "Image4", caption: "Caption4", index: 3, src: "images/toa-heftiba-362196-unsplash.jpg" },
+    { title: "Image5", caption: "Caption5", index: 4, src: "images/cristian-escobar-297114-unsplash.jpg" },
+    { title: "Image6", caption: "Caption6", index: 5, src: "images/cristian-palmer-756965-unsplash.jpg" },
+    { title: "Image7", caption: "Caption7", index: 6, src: "images/patrick-bald-730896-unsplash.jpg" },
+    { title: "Image8", caption: "Caption8", index: 7, src: "images/jeremy-thomas-98201-unsplash.jpg" },
+    { title: "Image9", caption: "Caption9", index: 8, src: "images/kristopher-roller-188180-unsplash.jpg" }
 ];
 
-let container = document.querySelector('.image-thumbnail-container');
+let container = document.querySelector('.list-item-container');
 let lightBoxContainer = document.querySelector('.lightbox-container');
 let lightBox = document.querySelector('.lightbox');
 let lightBoxImage = document.querySelector('.lightbox-image');
@@ -28,10 +27,15 @@ let addNewImage = (image, i) => {
     newImage.setAttribute('src', image.src);
     newImage.classList.add('image');
 
-    let imageThumbnail = document.createElement('li');
-    imageThumbnail.classList.add('image-thumbnail');
+    let imageTitle = document.createElement('p');
+    imageTitle.textContent = image.title;
+    imageTitle.classList.add('image-title');
 
-    imageThumbnail.appendChild(newImage);  
+    let listItem = document.createElement('li');
+    listItem.classList.add('image-thumbnail');
+
+    listItem.appendChild(newImage);
+    listItem.appendChild(imageTitle);
     
     let openLightBox = (event) => {
         currentImageIndex = i;
@@ -41,9 +45,9 @@ let addNewImage = (image, i) => {
         lightBoxContainer.classList.remove('hide-lightbox');
     };
 
-    imageThumbnail.addEventListener('click', openLightBox);
+    listItem.addEventListener('click', openLightBox);
 
-    container.appendChild(imageThumbnail);
+    container.appendChild(listItem);
 };
 
 images.forEach(addNewImage);
